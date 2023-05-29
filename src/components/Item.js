@@ -43,20 +43,19 @@ function Item(props) {
         console.log(itemid);
         await Axios.post("https://task-tracker-mern-server.vercel.app/updatestatus", {
             itemid: itemid
-        }, { headers: { "authorization": `bearer ${localStorage.getItem("token")}` } }).then((response) => {
+        }, { headers: { "authorization": `bearer ${localStorage.getItem("token")}` } }).then((response) =>{
 
             if (response.data.auth) {
                 console.log(response.data);
-                Axios.get(`https://task-tracker-mern-server.vercel.app/getitems?email=${userdata.email}`, { headers: { "authorization": `bearer ${localStorage.getItem("token")}` } }).then((response) => {
-
-                    if (response.data.auth) {
-                        setItemlist(response.data.itemslist);
-                        console.log(response.data.itemslist);
+                
+                // update itemlist
+                setItemlist(itemlist.map((item) => {
+                    if (item._id.valueOf() === itemid) {
+                        item.status = "completed";
                     }
-                    else {
-                        navigate("/login");
-                    }
-                });
+                    return item;
+                }))
+                
 
 
                 alert("Item status updated successfully")
