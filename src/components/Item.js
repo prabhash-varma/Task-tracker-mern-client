@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Item(props) {
 
-    const { itemlist, setItemlist } = useContext(store);
+    const {userdata,setUserData, itemlist, setItemlist } = useContext(store);
 
     const navigate = useNavigate();
 
@@ -47,7 +47,18 @@ function Item(props) {
 
             if (response.data.auth) {
                 console.log(response.data);
-                setItemlist(response.data.itemslist);
+                Axios.get(`https://task-tracker-mern-server.vercel.app/getitems?email=${userdata.email}`, { headers: { "authorization": `bearer ${localStorage.getItem("token")}` } }).then((response) => {
+
+                    if (response.data.auth) {
+                        setItemlist(response.data.itemslist);
+                        console.log(response.data.itemslist);
+                    }
+                    else {
+                        navigate("/login");
+                    }
+                });
+
+
                 alert("Item status updated successfully")
             }
             else {
