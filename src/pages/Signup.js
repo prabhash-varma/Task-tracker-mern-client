@@ -17,7 +17,7 @@ function Signup() {
   const submitHandler = (e) => {
     e.preventDefault();
     if(password === confirmPassword){
-      Axios.post("http://localhost:3001/signup",{
+      Axios.post("https://task-tracker-mern-server.vercel.app/signup",{
         firstName:firstName,
         lastName:lastName,
         email:email,

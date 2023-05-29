@@ -12,7 +12,7 @@ function Item(props) {
 
     const deleteItem = (itemid) => {
         console.log(itemid);
-        Axios.post("http://localhost:3001/deleteitem", {
+        Axios.post("https://task-tracker-mern-server.vercel.app/deleteitem", {
             itemid: itemid
         }, { headers: { "authorization": `bearer ${localStorage.getItem("token")}` } }).then((response) => {
 
@@ -41,7 +41,7 @@ function Item(props) {
 
     const updateStatus = async (itemid) => {
         console.log(itemid);
-        await Axios.post("http://localhost:3001/updatestatus", {
+        await Axios.post("https://task-tracker-mern-server.vercel.app/updatestatus", {
             itemid: itemid
         }, { headers: { "authorization": `bearer ${localStorage.getItem("token")}` } }).then((response) => {
 

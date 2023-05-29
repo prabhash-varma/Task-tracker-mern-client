@@ -15,7 +15,7 @@ function Home() {
   const ItemHandler = (e) => {
     e.preventDefault();
     
-    Axios.post("http://localhost:3001/additem",{
+    Axios.post("https://task-tracker-mern-server.vercel.app/additem",{
       title:title,
       description:description,
       email: userdata.email
@@ -35,7 +35,7 @@ function Home() {
 
 
 useEffect(() => {
-  Axios.get(`http://localhost:3001/getitems?email=${userdata.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((response) => {
+  Axios.get(`https://task-tracker-mern-server.vercel.app/getitems?email=${userdata.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((response) => {
     
     if(response.data.auth){
       setItemlist(response.data.itemslist);

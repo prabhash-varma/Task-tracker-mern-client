@@ -12,7 +12,7 @@ function Updateitem() {
     const UpdateHandler = (e) => {
         e.preventDefault();
         const itemid = localStorage.getItem("itemid");
-        Axios.post("http://localhost:3001/updateitem",{
+        Axios.post("https://task-tracker-mern-server.vercel.app/updateitem",{
             itemid:itemid,
             title:title,
             description:description
